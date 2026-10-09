@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tanarok.css">
+    <link rel="icon" href="logo.png">
+    <title>ClassMate - Tanáraink</title>
+</head>
+
+<body>
+    <!-- Navigáció -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">ClassMate</a>
+            <div class="nav-links">
+                <a href="#teachers">Tanáraink</a>
+                <a href="#about">Rólunk</a>
+                <a href="index.html" class="login-tab">Vissza a főoldalra</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Fejléc -->
+    <header>
+        <h1>ClassMate</h1>
+        <p>Ahol a tanulás többé nem nyűg, hanem közös siker!</p>
+    </header>
+
+    <main class="container">
+        <!-- TANÁR KERESŐ ÉS LISTA SZEKCIÓ -->
+        <section id="teachers" class="teachers-section">
+            <h2>Találd meg a hozzád illő magántanárt!</h2>
+            
+            <!-- Keresőmező -->
+            <div class="search-box">
+                <input type="text" id="teacherSearch" placeholder="Keresés név, város vagy tantárgy alapján..." onkeyup="filterTeachers()">
+            </div>
+
+            <!-- Tanárok rácsa -->
+            <div class="teachers-grid" id="teachersList">
+                
+                <!-- 1. Tanár -->
+                <div class="teacher-card">
+                    <div class="teacher-header-info">
+                        <h3>Kovács Péter</h3>
+                        <span class="subject-badge">Matematika</span>
+                    </div>
+                    <div class="teacher-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-score">5.0</span>
+                    </div>
+                    <p class="teacher-bio">10 év érettségi felkészítő tapasztalattal rendelkezem. Célom, hogy a legnehezebb logikai összefüggéseket is érthetővé és egyszerűvé tegyem.</p>
+                    <div class="teacher-details">
+                        <p><strong>Város:</strong> Budapest / Online</p>
+                        <p><span class="price">5 000 Ft / óra</span></p>
+                        <p><strong>Telefon:</strong> <a href="tel:+36301234567">+36 30 123 4567</a></p>
+                    </div>
+                    <button type="button" class="apply-btn" onclick="openChat('Kovács Péter', 'Matematika', this)">Jelentkezés / Kapcsolat</button>
+                </div>
+
+                <!-- 2. Tanár -->
+                <div class="teacher-card">
+                    <div class="teacher-header-info">
+                        <h3>Nagy Anna</h3>
+                        <span class="subject-badge">Angol nyelv</span>
+                    </div>
+                    <div class="teacher-rating">
+                        <span class="stars">★★★★<span class="star-empty">★</span></span>
+                        <span class="rating-score">4.8</span>
+                    </div>
+                    <p class="teacher-bio">Anyaanyelvi környezetben szerzett tapasztalataimmal segítek a beszédcentrikus nyelvtanulásban, emelt és középszintű nyelvvizsga felkészítésben.</p>
+                    <div class="teacher-details">
+                        <p><strong>Város:</strong> Győr / Online</p>
+                        <p><span class="price">4 500 Ft / óra</span></p>
+                        <p><strong>Telefon:</strong> <a href="tel:+36209876543">+36 20 987 6543</a></p>
+                    </div>
+                    <button type="button" class="apply-btn" onclick="openChat('Nagy Anna', 'Angol nyelv', this)">Jelentkezés / Kapcsolat</button>
+                </div>
+
+                <!-- 3. Tanár -->
+                <div class="teacher-card">
+                    <div class="teacher-header-info">
+                        <h3>Szabó Gábor</h3>
+                        <span class="subject-badge">Fizika</span>
+                    </div>
+                    <div class="teacher-rating">
+                        <span class="stars">★★★★<span class="star-empty">★</span></span>
+                        <span class="rating-score">4.5</span>
+                    </div>
+                    <p class="teacher-bio">Gépészmérnöki háttérrel a fizika gyakorlati és látványos oldalát mutatom meg. Segítek a záróvizsgákra és felvételire való felkészülésben.</p>
+                    <div class="teacher-details">
+                        <p><strong>Város:</strong> Debrecen</p>
+                        <p><span class="price">6 000 Ft / óra</span></p>
+                        <p><strong>Telefon:</strong> <a href="tel:+36705551234">+36 70 555 1234</a></p>
+                    </div>
+                    <button type="button" class="apply-btn" onclick="openChat('Szabó Gábor', 'Fizika', this)">Jelentkezés / Kapcsolat</button>
+                </div>
+
+                <!-- 4. Tanár -->
+                <div class="teacher-card">
+                    <div class="teacher-header-info">
+                        <h3>Tóth Eszter</h3>
+                        <span class="subject-badge">Történelem</span>
+                    </div>
+                    <div class="teacher-rating">
+                        <span class="stars">★★★<span class="star-empty">★★</span></span>
+                        <span class="rating-score">3.9</span>
+                    </div>
+                    <p class="teacher-bio">Élményalapú történelemoktatás évszámmagolás nélkül! Segítek átlátni a történelmi összefüggéseket és kidolgozni a tételcímeket.</p>
+                    <div class="teacher-details">
+                        <p><strong>Város:</strong> Budapest</p>
+                        <p><span class="price">4 000 Ft / óra</span></p>
+                        <p><strong>Telefon:</strong> <a href="tel:+36304448899">+36 30 444 8899</a></p>
+                    </div>
+                    <button type="button" class="apply-btn" onclick="openChat('Tóth Eszter', 'Történelem', this)">Jelentkezés / Kapcsolat</button>
+                </div>
+
+                <!-- 5. Tanár -->
+                <div class="teacher-card">
+                    <div class="teacher-header-info">
+                        <h3>Horváth Bence</h3>
+                        <span class="subject-badge">Programozás</span>
+                    </div>
+                    <div class="teacher-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-score">4.9</span>
+                    </div>
+                    <p class="teacher-bio">Szoftverfejlesztőként Python, Webfejlesztés (HTML/CSS/JS) és digitális kultúra érettségi felkészítést vállalok kezdőknek és haladóknak.</p>
+                    <div class="teacher-details">
+                        <p><strong>Város:</strong> Szeged / Online</p>
+                        <p><span class="price">6 500 Ft / óra</span></p>
+                        <p><strong>Telefon:</strong> <a href="tel:+36302223344">+36 30 222 3344</a></p>
+                    </div>
+                    <button type="button" class="apply-btn" onclick="openChat('Horváth Bence', 'Programozás', this)">Jelentkezés / Kapcsolat</button>
+                </div>
+
+                <!-- 6. Tanár -->
+                <div class="teacher-card">
+                    <div class="teacher-header-info">
+                        <h3>Balogh Zsófia</h3>
+                        <span class="subject-badge">Biológia</span>
+                    </div>
+                    <div class="teacher-rating">
+                        <span class="stars">★★★★<span class="star-empty">★</span></span>
+                        <span class="rating-score">4.7</span>
+                    </div>
+                    <p class="teacher-bio">Orvostanhallgatóként az orvosi egyetemi felvételire és az emelt szintű érettségire készítem fel a diákokat egyéni tanulási tervvel.</p>
+                    <div class="teacher-details">
+                        <p><strong>Város:</strong> Pécs / Online</p>
+                        <p><span class="price">5 500 Ft / óra</span></p>
+                        <p><strong>Telefon:</strong> <a href="tel:+36203334455">+36 20 333 4455</a></p>
+                    </div>
+                    <button type="button" class="apply-btn" onclick="openChat('Balogh Zsófia', 'Biológia', this)">Jelentkezés / Kapcsolat</button>
+                </div>
+
+                <!-- 7. Tanár -->
+                <div class="teacher-card">
+                    <div class="teacher-header-info">
+                        <h3>Molnár Dániel</h3>
+                        <span class="subject-badge">Német nyelv</span>
+                    </div>
+                    <div class="teacher-rating">
+                        <span class="stars">★★★★<span class="star-empty">★</span></span>
+                        <span class="rating-score">4.2</span>
+                    </div>
+                    <p class="teacher-bio">Goethe nyelvvizsgára és külföldi munkavállalásra felkészítő órák, ahol a nyelvtant érthetően és gyakorlatiasan tisztázzuk.</p>
+                    <div class="teacher-details">
+                        <p><strong>Város:</strong> Sopron / Online</p>
+                        <p><span class="price">5 000 Ft / óra</span></p>
+                        <p><strong>Telefon:</strong> <a href="tel:+36706667788">+36 70 666 7788</a></p>
+                    </div>
+                    <button type="button" class="apply-btn" onclick="openChat('Molnár Dániel', 'Német nyelv', this)">Jelentkezés / Kapcsolat</button>
+                </div>
+
+                <!-- 8. Tanár -->
+                <div class="teacher-card">
+                    <div class="teacher-header-info">
+                        <h3>Kiss Katalin</h3>
+                        <span class="subject-badge">Magyar nyelv</span>
+                    </div>
+                    <div class="teacher-rating">
+                        <span class="stars">★★★<span class="star-empty">★★</span></span>
+                        <span class="rating-score">3.8</span>
+                    </div>
+                    <p class="teacher-bio">Műelemzés, esszéírás és helyesírás-fejlesztés könnyedén. Közép- és emelt szintű érettségi felkészítés teljes tételelemzéssel.</p>
+                    <div class="teacher-details">
+                        <p><strong>Város:</strong> Miskolc / Online</p>
+                        <p><span class="price">4 200 Ft / óra</span></p>
+                        <p><strong>Telefon:</strong> <a href="tel:+36307778899">+36 30 777 8899</a></p>
+                    </div>
+                    <button type="button" class="apply-btn" onclick="openChat('Kiss Katalin', 'Magyar nyelv', this)">Jelentkezés / Kapcsolat</button>
+                </div>
+
+                <!-- 9. Tanár -->
+                <div class="teacher-card">
+                    <div class="teacher-header-info">
+                        <h3>Varga Ádám</h3>
+                        <span class="subject-badge">Kémia</span>
+                    </div>
+                    <div class="teacher-rating">
+                        <span class="stars">★★★★<span class="star-empty">★</span></span>
+                        <span class="rating-score">4.6</span>
+                    </div>
+                    <p class="teacher-bio">Vegyészmérnök végzettséggel a kémia számítási feladatok és reakcióegyenletek mestereivé teszem a hozzám forduló diákokat.</p>
+                    <div class="teacher-details">
+                        <p><strong>Város:</strong> Veszprém / Online</p>
+                        <p><span class="price">5 800 Ft / óra</span></p>
+                        <p><strong>Telefon:</strong> <a href="tel:+36201112233">+36 20 111 2233</a></p>
+                    </div>
+                    <button type="button" class="apply-btn" onclick="openChat('Varga Ádám', 'Kémia', this)">Jelentkezés / Kapcsolat</button>
+                </div>
+
+                <!-- 10. Tanár -->
+                <div class="teacher-card">
+                    <div class="teacher-header-info">
+                        <h3>Farkas Dóra</h3>
+                        <span class="subject-badge">Spanyol nyelv</span>
+                    </div>
+                    <div class="teacher-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-score">5.0</span>
+                    </div>
+                    <p class="teacher-bio">Lendületes és kommunikáció-központú órák kezdőknek és haladóknak. Spanyol nyelvvizsgára és érettségire való felkészítés.</p>
+                    <div class="teacher-details">
+                        <p><strong>Város:</strong> Budapest / Online</p>
+                        <p><span class="price">4 800 Ft / óra</span></p>
+                        <p><strong>Telefon:</strong> <a href="tel:+36309998877">+36 30 999 8877</a></p>
+                    </div>
+                    <button type="button" class="apply-btn" onclick="openChat('Farkas Dóra', 'Spanyol nyelv', this)">Jelentkezés / Kapcsolat</button>
+                </div>
+
+                <!-- 11. Tanár -->
+                <div class="teacher-card">
+                    <div class="teacher-header-info">
+                        <h3>Németh Tamás</h3>
+                        <span class="subject-badge">Földrajz</span>
+                    </div>
+                    <div class="teacher-rating">
+                        <span class="stars">★★★<span class="star-empty">★★</span></span>
+                        <span class="rating-score">3.6</span>
+                    </div>
+                    <p class="teacher-bio">Térképészeti és természetföldrajzi látásmód átadása érthető ábrákkal, érettségi és felvételi előkészítők szekcióban.</p>
+                    <div class="teacher-details">
+                        <p><strong>Város:</strong> Szombathely</p>
+                        <p><span class="price">3 800 Ft / óra</span></p>
+                        <p><strong>Telefon:</strong> <a href="tel:+36701239876">+36 70 123 9876</a></p>
+                    </div>
+                    <button type="button" class="apply-btn" onclick="openChat('Németh Tamás', 'Földrajz', this)">Jelentkezés / Kapcsolat</button>
+                </div>
+
+                <!-- 12. Tanár -->
+                <div class="teacher-card">
+                    <div class="teacher-header-info">
+                        <h3>Takács Laura</h3>
+                        <span class="subject-badge">Francia nyelv</span>
+                    </div>
+                    <div class="teacher-rating">
+                        <span class="stars">★★★★<span class="star-empty">★</span></span>
+                        <span class="rating-score">4.4</span>
+                    </div>
+                    <p class="teacher-bio">Párizsban töltött egyetemi éveim alatt sajátítottam el a nyelv finomságait. Segítek a kiejtés, nyelvtan és beszédkészség fejlesztésében.</p>
+                    <div class="teacher-details">
+                        <p><strong>Város:</strong> Kecskemét / Online</p>
+                        <p><span class="price">5 200 Ft / óra</span></p>
+                        <p><strong>Telefon:</strong> <a href="tel:+36204445566">+36 20 444 5566</a></p>
+                    </div>
+                    <button type="button" class="apply-btn" onclick="openChat('Takács Laura', 'Francia nyelv', this)">Jelentkezés / Kapcsolat</button>
+                </div>
+
+                <!-- 13. Tanár -->
+                <div class="teacher-card">
+                    <div class="teacher-header-info">
+                        <h3>Szalai Márk</h3>
+                        <span class="subject-badge">Informatika</span>
+                    </div>
+                    <div class="teacher-rating">
+                        <span class="stars">★★★★<span class="star-empty">★</span></span>
+                        <span class="rating-score">4.3</span>
+                    </div>
+                    <p class="teacher-bio">Digitális kultúra, Office alkalmazások emelt szintű használata és adatbázis-kezelés (SQL) felkészítés érettségire és egyetemi kurzusokra.</p>
+                    <div class="teacher-details">
+                        <p><strong>Város:</strong> Székesfehérvár</p>
+                        <p><span class="price">4 500 Ft / óra</span></p>
+                        <p><strong>Telefon:</strong> <a href="tel:+36308887766">+36 30 888 7766</a></p>
+                    </div>
+                    <button type="button" class="apply-btn" onclick="openChat('Szalai Márk', 'Informatika', this)">Jelentkezés / Kapcsolat</button>
+                </div>
+
+                <!-- 14. Tanár -->
+                <div class="teacher-card">
+                    <div class="teacher-header-info">
+                        <h3>Pásztor Réka</h3>
+                        <span class="subject-badge">Olasz nyelv</span>
+                    </div>
+                    <div class="teacher-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-score">4.9</span>
+                    </div>
+                    <p class="teacher-bio">Olasz nyelv és kultúra szerelmeseiként szeretném megosztani tudásomat. Kezdőtől a C1-es szintig vállalok egyéni oktatást.</p>
+                    <div class="teacher-details">
+                        <p><strong>Város:</strong> Eger / Online</p>
+                        <p><span class="price">4 700 Ft / óra</span></p>
+                        <p><strong>Telefon:</strong> <a href="tel:+36703332211">+36 70 333 2211</a></p>
+                    </div>
+                    <button type="button" class="apply-btn" onclick="openChat('Pásztor Réka', 'Olasz nyelv', this)">Jelentkezés / Kapcsolat</button>
+                </div>
+
+                <!-- 15. Tanár -->
+                <div class="teacher-card">
+                    <div class="teacher-header-info">
+                        <h3>Gál Kristóf</h3>
+                        <span class="subject-badge">Közgazdaságtan</span>
+                    </div>
+                    <div class="teacher-rating">
+                        <span class="stars">★★★★<span class="star-empty">★</span></span>
+                        <span class="rating-score">4.1</span>
+                    </div>
+                    <p class="teacher-bio">Mikro- és makroökonómia, statisztika és számviteli alapok egyetemi hallgatóknak és szakközépiskolásoknak érthető magyarázatokkal.</p>
+                    <div class="teacher-details">
+                        <p><strong>Város:</strong> Budapest / Online</p>
+                        <p><span class="price">6 200 Ft / óra</span></p>
+                        <p><strong>Telefon:</strong> <a href="tel:+36208889900">+36 20 888 9900</a></p>
+                    </div>
+                    <button type="button" class="apply-btn" onclick="openChat('Gál Kristóf', 'Közgazdaságtan', this)">Jelentkezés / Kapcsolat</button>
+                </div>
+
+                <!-- 16. Tanár -->
+                <div class="teacher-card">
+                    <div class="teacher-header-info">
+                        <h3>Fodor Bianka</h3>
+                        <span class="subject-badge">Ének-Zene</span>
+                    </div>
+                    <div class="teacher-rating">
+                        <span class="stars">★★★<span class="star-empty">★★</span></span>
+                        <span class="rating-score">3.7</span>
+                    </div>
+                    <p class="teacher-bio">Zeneakadémiát végzett tanárként szolfézs korrepetálást, zenetörténetet és zeneelméleti felkészítést vállalok felvételizőknek.</p>
+                    <div class="teacher-details">
+                        <p><strong>Város:</strong> Győr</p>
+                        <p><span class="price">4 000 Ft / óra</span></p>
+                        <p><strong>Telefon:</strong> <a href="tel:+36305554433">+36 30 555 4433</a></p>
+                    </div>
+                    <button type="button" class="apply-btn" onclick="openChat('Fodor Bianka', 'Ének-Zene', this)">Jelentkezés / Kapcsolat</button>
+                </div>
+
+                <!-- 17. Tanár -->
+                <div class="teacher-card">
+                    <div class="teacher-header-info">
+                        <h3>Pintér Dávid</h3>
+                        <span class="subject-badge">Matematika</span>
+                    </div>
+                    <div class="teacher-rating">
+                        <span class="stars">★★★★<span class="star-empty">★</span></span>
+                        <span class="rating-score">4.5</span>
+                    </div>
+                    <p class="teacher-bio">Általános iskolai felzárkóztatásra és nyolcosztályos/négyosztályos gimnáziumi központi felvételire specializálódott türelmes oktató.</p>
+                    <div class="teacher-details">
+                        <p><strong>Város:</strong> Nyíregyháza / Online</p>
+                        <p><span class="price">4 200 Ft / óra</span></p>
+                        <p><strong>Telefon:</strong> <a href="tel:+36709991122">+36 70 999 1122</a></p>
+                    </div>
+                    <button type="button" class="apply-btn" onclick="openChat('Pintér Dávid', 'Matematika', this)">Jelentkezés / Kapcsolat</button>
+                </div>
+
+                <!-- 18. Tanár -->
+                <div class="teacher-card">
+                    <div class="teacher-header-info">
+                        <h3>Bogdán Lili</h3>
+                        <span class="subject-badge">Művészettörténet</span>
+                    </div>
+                    <div class="teacher-rating">
+                        <span class="stars">★★★★<span class="star-empty">★</span></span>
+                        <span class="rating-score">4.8</span>
+                    </div>
+                    <p class="teacher-bio">Képzőművészeti egyetemi felvételi portfólió összeállítása, rajzi alapok és művészettörténet érettségi felkészítés.</p>
+                    <div class="teacher-details">
+                        <p><strong>Város:</strong> Budapest</p>
+                        <p><span class="price">5 000 Ft / óra</span></p>
+                        <p><strong>Telefon:</strong> <a href="tel:+36207773322">+36 20 777 3322</a></p>
+                    </div>
+                    <button type="button" class="apply-btn" onclick="openChat('Bogdán Lili', 'Művészettörténet', this)">Jelentkezés / Kapcsolat</button>
+                </div>
+
+                <!-- 19. Tanár -->
+                <div class="teacher-card">
+                    <div class="teacher-header-info">
+                        <h3>Mészáros Roland</h3>
+                        <span class="subject-badge">Fizika</span>
+                    </div>
+                    <div class="teacher-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-score">5.0</span>
+                    </div>
+                    <p class="teacher-bio">Emelt szintű fizika felkészítés mérnöki és fizika szakos egyetemi továbbtanuláshoz, elméleti és gyakorlati példákkal.</p>
+                    <div class="teacher-details">
+                        <p><strong>Város:</strong> Debrecen / Online</p>
+                        <p><span class="price">6 500 Ft / óra</span></p>
+                        <p><strong>Telefon:</strong> <a href="tel:+36301114455">+36 30 111 4455</a></p>
+                    </div>
+                    <button type="button" class="apply-btn" onclick="openChat('Mészáros Roland', 'Fizika', this)">Jelentkezés / Kapcsolat</button>
+                </div>
+
+                <!-- 20. Tanár -->
+                <div class="teacher-card">
+                    <div class="teacher-header-info">
+                        <h3>Simon Viktória</h3>
+                        <span class="subject-badge">Orosz nyelv</span>
+                    </div>
+                    <div class="teacher-rating">
+                        <span class="stars">★★★★<span class="star-empty">★</span></span>
+                        <span class="rating-score">4.2</span>
+                    </div>
+                    <p class="teacher-bio">Orosz nyelvoktatás az ábécé alapjaitól a felsőfokú nyelvvizsgáig. Üzleti és hétköznapi társalgási órák online formában.</p>
+                    <div class="teacher-details">
+                        <p><strong>Város:</strong> Szolnok / Online</p>
+                        <p><span class="price">4 900 Ft / óra</span></p>
+                        <p><strong>Telefon:</strong> <a href="tel:+36704441122">+36 70 444 1122</a></p>
+                    </div>
+                    <button type="button" class="apply-btn" onclick="openChat('Simon Viktória', 'Orosz nyelv', this)">Jelentkezés / Kapcsolat</button>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== CHAT / KAPCSOLATFELVÉTELI MODAL ABLAK ===== -->
+    <div id="chatModal" class="chat-modal">
+        <div class="chat-content">
+            <div class="chat-header">
+                <div>
+                    <h3 id="chatTeacherName">Oktató neve</h3>
+                    <span id="chatTeacherSubject" class="subject-badge">Tantárgy</span>
+                </div>
+                <button type="button" class="close-btn" onclick="closeChat()">&times;</button>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <!-- Üzenetek helye -->
+            </div>
+
+            <form class="chat-input-area" onsubmit="sendMessage(event)">
+                <input type="text" id="userMessage" placeholder="Írd meg az igénylést vagy kérdésedet..." required>
+                <button type="submit" class="send-btn">Küldés</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== FIZETÉSI (CHECKOUT) MODAL ABLAK ===== -->
+    <div id="paymentModal" class="chat-modal" style="z-index: 10001;">
+        <div class="chat-content payment-content">
+            <div class="chat-header">
+                <h3>Óradíj kifizetése</h3>
+                <button type="button" class="close-btn" onclick="closePayment()">&times;</button>
+            </div>
+            <div class="payment-body">
+                <p>Kiválasztott oktató: <strong id="payTeacherName">-</strong></p>
+                <p>Tantárgy: <span id="payTeacherSubject" class="subject-badge">-</span></p>
+
+                <!-- Órák száma választó -->
+                <div class="input-group" style="margin-top: 10px;">
+                    <label>Megvásárolandó órák száma:</label>
+                    <select id="lessonCountSelect" onchange="updateTotalPrice()" class="card-select">
+                        <option value="1">1 óra</option>
+                        <option value="2">2 óra</option>
+                        <option value="3">3 óra</option>
+                        <option value="4">4 óra</option>
+                        <option value="5">5 óra (Csomag)</option>
+                        <option value="10">10 óra (Bérlet)</option>
+                    </select>
+                </div>
+
+                <div class="price-box">
+                    <span>Fizetendő összeg:</span>
+                    <h2 id="payTeacherPrice">0 Ft</h2>
+                </div>
+                
+                <!-- Fizetési Módok Választója -->
+                <div class="payment-methods-tabs">
+                    <button type="button" class="pay-tab active" onclick="switchPaymentMethod('card', this)">💳 Bankkártya</button>
+                    <button type="button" class="pay-tab" onclick="switchPaymentMethod('paypal', this)">🅿️ PayPal</button>
+                    <button type="button" class="pay-tab" onclick="switchPaymentMethod('applepay', this)">🍏 Apple Pay</button>
+                    <button type="button" class="pay-tab" onclick="switchPaymentMethod('gpay', this)">🌐 Google Pay</button>
+                </div>
+
+                <form class="payment-form" onsubmit="processPayment(event)">
+                    
+                    <!-- 1. Bankkártyás mezők -->
+                    <div id="cardMethodFields" class="method-fields active">
+                        <div class="input-group">
+                            <label>Kártyatípus</label>
+                            <select class="card-select">
+                                <option value="visa">Visa</option>
+                                <option value="mastercard">Mastercard</option>
+                                <option value="amex">American Express</option>
+                                <option value="maestro">Maestro</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group" style="margin-top: 8px;">
+                            <label>Kártyabirtokos neve</label>
+                            <input type="text" placeholder="Kovács János" class="card-input">
+                        </div>
+
+                        <div class="input-group" style="margin-top: 8px;">
+                            <label>Kártyaszám</label>
+                            <input type="text" placeholder="4532 •••• •••• 8901" maxlength="19" class="card-input">
+                        </div>
+
+                        <div class="form-row" style="margin-top: 8px;">
+                            <div class="input-group">
+                                <label>Lejárat (MM/YY)</label>
+                                <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5" oninput="formatExpiry(this)" class="card-input">
+                            </div>
+                            <div class="input-group">
+                                <label>CVC / CWW</label>
+                                <input type="password" placeholder="123" maxlength="3" class="card-input">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. PayPal mezők -->
+                    <div id="paypalMethodFields" class="method-fields">
+                        <p class="method-desc">A „Fizetés PayPal-lal” gombra kattintva átirányítunk a PayPal biztonságos bejelentkezési oldalára.</p>
+                    </div>
+
+                    <!-- 3. Apple Pay mezők -->
+                    <div id="applepayMethodFields" class="method-fields">
+                        <p class="method-desc">Fizess gyorsan és biztonságosan Touch ID vagy Face ID azonosítással.</p>
+                    </div>
+
+                    <!-- 4. Google Pay mezők -->
+                    <div id="gpayMethodFields" class="method-fields">
+                        <p class="method-desc">Használd a Google Fiókodban elmentett bankkártyáidat egyetlen kattintással.</p>
+                    </div>
+
+                    <button type="submit" id="paySubmitBtn" class="pay-submit-btn">🔒 Biztonságos Fizetés Kártyával</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 ClassMate - Minden jog fenntartva.</p>
+    </footer>
+
+    <!-- JS FÜGGVÉNYEK -->
+    <script>
+        var currentUnitPriceNum = 5000;
+        var currentPriceText = "5 000 Ft / óra";
+        var selectedMethod = 'card';
+
+        function filterTeachers() {
+            var input = document.getElementById('teacherSearch').value.toLowerCase();
+            var cards = document.querySelectorAll('.teacher-card');
+
+            cards.forEach(function(card) {
+                var text = card.innerText.toLowerCase();
+                if (text.includes(input)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        function openChat(teacherName, subject, buttonElement) {
+            if (buttonElement) {
+                var card = buttonElement.closest('.teacher-card');
+                var priceElement = card.querySelector('.price');
+                currentPriceText = priceElement ? priceElement.innerText : "5 000 Ft / óra";
+                
+                var priceDigits = currentPriceText.replace(/[^0-9]/g, '');
+                currentUnitPriceNum = parseInt(priceDigits, 10) || 5000;
+            }
+
+            var modal = document.getElementById('chatModal');
+            document.getElementById('chatTeacherName').innerText = teacherName;
+            document.getElementById('chatTeacherSubject').innerText = subject;
+            
+            var messagesDiv = document.getElementById('chatMessages');
+            messagesDiv.innerHTML = `
+                <div class="message system-msg buy-card-msg">
+                    <div class="buy-card-info">
+                        <span>Óradíj: <strong>${currentPriceText}</strong></span>
+                    </div>
+                    <button type="button" class="inline-pay-btn" onclick="openPayment()">💳 Óra vásárlása</button>
+                </div>
+            `;
+            
+            modal.style.display = 'flex';
+        }
+
+        function closeChat() {
+            document.getElementById('chatModal').style.display = 'none';
+        }
+
+        function openPayment() {
+            var teacherName = document.getElementById('chatTeacherName').innerText;
+            var subject = document.getElementById('chatTeacherSubject').innerText;
+
+            document.getElementById('payTeacherName').innerText = teacherName;
+            document.getElementById('payTeacherSubject').innerText = subject;
+            document.getElementById('lessonCountSelect').value = "1";
+            
+            updateTotalPrice();
+
+            document.getElementById('paymentModal').style.display = 'flex';
+        }
+
+        function updateTotalPrice() {
+            var count = parseInt(document.getElementById('lessonCountSelect').value, 10) || 1;
+            var total = currentUnitPriceNum * count;
+            var formattedTotal = total.toLocaleString('hu-HU') + " Ft";
+            document.getElementById('payTeacherPrice').innerText = formattedTotal;
+        }
+
+        function switchPaymentMethod(method, btnElement) {
+            selectedMethod = method;
+            
+            var tabs = document.querySelectorAll('.pay-tab');
+            tabs.forEach(function(tab) { tab.classList.remove('active'); });
+            btnElement.classList.add('active');
+
+            var allFields = document.querySelectorAll('.method-fields');
+            allFields.forEach(function(field) { field.classList.remove('active'); });
+            
+            document.getElementById(method + 'MethodFields').classList.add('active');
+
+            var submitBtn = document.getElementById('paySubmitBtn');
+            if(method === 'card') {
+                submitBtn.innerText = '🔒 Biztonságos Fizetés Kártyával';
+            } else if(method === 'paypal') {
+                submitBtn.innerText = '🅿️ Fizetés PayPal fiókkal';
+            } else if(method === 'applepay') {
+                submitBtn.innerText = '🍏 Apple Pay Fizetés';
+            } else if(method === 'gpay') {
+                submitBtn.innerText = '🌐 Google Pay Fizetés';
+            }
+        }
+
+        function formatExpiry(input) {
+            var value = input.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                input.value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            } else {
+                input.value = value;
+            }
+        }
+
+        function closePayment() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        function processPayment(event) {
+            event.preventDefault();
+            closePayment();
+
+            var messagesDiv = document.getElementById('chatMessages');
+            var teacherName = document.getElementById('chatTeacherName').innerText;
+            var lessonCount = document.getElementById('lessonCountSelect').value;
+            var totalPrice = document.getElementById('payTeacherPrice').innerText;
+
+            var methodNames = {
+                'card': 'Bankkártya',
+                'paypal': 'PayPal',
+                'applepay': 'Apple Pay',
+                'gpay': 'Google Pay'
+            };
+
+            var successMsg = document.createElement('div');
+            successMsg.className = 'message system-msg payment-success-msg';
+            successMsg.innerHTML = `
+                ✅ <strong>Sikeres fizetés! (${methodNames[selectedMethod]})</strong><br>
+                Sikeresen megvásároltál <strong>${lessonCount} tanórát</strong> (${totalPrice}) <strong>${teacherName}</strong> oktatónál.
+            `;
+            messagesDiv.appendChild(successMsg);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function sendMessage(event) {
+            event.preventDefault();
+            var input = document.getElementById('userMessage');
+            var messageText = input.value.trim();
+            if (!messageText) return;
+
+            var messagesDiv = document.getElementById('chatMessages');
+            
+            var userMsg = document.createElement('div');
+            userMsg.className = 'message user-msg';
+            userMsg.innerText = messageText;
+            messagesDiv.appendChild(userMsg);
+
+            input.value = '';
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+            var teacherName = document.getElementById('chatTeacherName').innerText;
+            var lowerText = messageText.toLowerCase();
+            var replyText = "";
+
+            if (lowerText.includes("mikor") || lowerText.includes("időpont") || lowerText.includes("ráérsz") || lowerText.includes("hétfő") || lowerText.includes("péntek") || lowerText.includes("hétvége")) {
+                replyText = "Szia! Általában hétköznap délutánonként és hétvégén délelőtt érek rá. Melyik nap lenne számodra a legmegfelelőbb?";
+            } else if (lowerText.includes("ár") || lowerText.includes("mennyibe") || lowerText.includes("fizetés") || lowerText.includes("ft") || lowerText.includes("kedvezmény")) {
+                replyText = `Az óradíjam ${currentPriceText}. Ha több órát (pl. 5 vagy 10 órás bérletet) vásárolsz egyben a chatben lévő gombra kattintva, kedvezőbb árat tudunk kiszámolni!`;
+            } else if (lowerText.includes("online") || lowerText.includes("személyesen") || lowerText.includes("hol") || lowerText.includes("helyszín") || lowerText.includes("zoom") || lowerText.includes("meet")) {
+                replyText = "Online (Google Meet vagy Zoom platformon) és személyesen is szívesen tartok órákat, ahogy neked kényelmesebb!";
+            } else if (lowerText.includes("szia") || lowerText.includes("üdv") || lowerText.includes("hello") || lowerText.includes("jo napot")) {
+                replyText = `Szia! Örülök, hogy írtál. Milyen témakörben vagy tantárgyból szeretnél segítséget kérni?`;
+            } else if (lowerText.includes("köszönöm") || lowerText.includes("köszi") || lowerText.includes("ok") || lowerText.includes("rendben")) {
+                replyText = "Nagyon szívesen! Ha készen állsz, nyugodtan válaszd ki a megvásárolandó órák számát a fenti gombbal.";
+            } else {
+                replyText = `Köszönöm az üzeneted! Megkaptam a megkeresést. Milyen szinten állsz most a tananyaggal, vagy mikorra tervezitek a vizsgát / érettségit?`;
+            }
+
+            setTimeout(function() {
+                var autoReply = document.createElement('div');
+                autoReply.className = 'message system-msg';
+                autoReply.innerHTML = `<strong>${teacherName}:</strong> ${replyText}`;
+                messagesDiv.appendChild(autoReply);
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            }, 1200);
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById('chatModal');
+            var payModal = document.getElementById('paymentModal');
+            if (event.target === modal) {
+                closeChat();
+            }
+            if (event.target === payModal) {
+                closePayment();
+            }
+        }
+    </script>
+</body>
+</html>
