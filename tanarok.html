@@ -6,6 +6,12 @@
     <link rel="stylesheet" href="tanarok.css">
     <link rel="icon" href="logo.png">
     <title>ClassMate - Tanáraink</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("nDlazLp5WzrKr_I5b");
+       })();
+    </script>
 </head>
 
 <body>
@@ -651,30 +657,93 @@
         }
 
         function processPayment(event) {
-            event.preventDefault();
-            closePayment();
+    event.preventDefault();
+    closePayment();
 
-            var messagesDiv = document.getElementById('chatMessages');
-            var teacherName = document.getElementById('chatTeacherName').innerText;
-            var lessonCount = document.getElementById('lessonCountSelect').value;
-            var totalPrice = document.getElementById('payTeacherPrice').innerText;
+    var messagesDiv = document.getElementById('chatMessages');
+    var teacherName = document.getElementById('chatTeacherName').innerText;
+    var subject = document.getElementById('chatTeacherSubject').innerText;
+    var lessonCount = document.getElementById('lessonCountSelect').value;
+    
+    var count = parseInt(lessonCount, 10) || 1;
+    var grossTotalNum = currentUnitPriceNum * count;
 
-            var methodNames = {
-                'card': 'Bankkártya',
-                'paypal': 'PayPal',
-                'applepay': 'Apple Pay',
-                'gpay': 'Google Pay'
-            };
+    var taxNum = Math.round(grossTotalNum - (grossTotalNum / 1.27));
+    var netPriceNum = grossTotalNum - taxNum;
 
-            var successMsg = document.createElement('div');
-            successMsg.className = 'message system-msg payment-success-msg';
-            successMsg.innerHTML = `
-                ✅ <strong>Sikeres fizetés! (${methodNames[selectedMethod]})</strong><br>
-                Sikeresen megvásároltál <strong>${lessonCount} tanórát</strong> (${totalPrice}) <strong>${teacherName}</strong> oktatónál.
-            `;
-            messagesDiv.appendChild(successMsg);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    var totalPrice = grossTotalNum.toLocaleString('hu-HU') + " Ft";
+    var taxPrice = taxNum.toLocaleString('hu-HU') + " Ft";
+    var shippingPrice = netPriceNum.toLocaleString('hu-HU') + " Ft";
+
+    var methodNames = {
+        'card': 'Bankkártya',
+        'paypal': 'PayPal',
+        'applepay': 'Apple Pay',
+        'gpay': 'Google Pay'
+    };
+
+    var userEmail = localStorage.getItem('currentUserEmail') || "vasarlo@classmate.hu";
+    var orderId = Math.floor(100000 + Math.random() * 900000);
+
+    var templateParams = {
+        to_email: userEmail,
+        email: userEmail,
+        order_id: orderId,
+        orders: [
+            {
+                name: teacherName + " (" + subject + ")",
+                units: lessonCount + " óra",
+                price: totalPrice
+            }
+        ],
+        cost: {
+            shipping: shippingPrice,
+            tax: taxPrice,
+            total: totalPrice
         }
+    };
+
+    // 1. E-mail küldése az EmailJS-el
+    emailjs.send('service_pf5xi32', 'template_9yl26p8', templateParams)
+        .then(function(response) {
+           console.log('Számla e-mail sikeresen elküldve!', response.status, response.text);
+        }, function(error) {
+           console.log('Hiba történt a számla e-mail küldésekor...', error);
+        });
+
+    // 2. RENDELÉS MENTÉSE A GOOGLE TÁBLÁZATBA
+    var googleSheetUrl = "https://script.google.com/macros/s/AKfycbx7QjnCaCffJrFNTuosEMjkh80sY-xR7Wahu5rmBtiJa8cG1u4Q8_cWpS6g8uuhQAXcPw/exec"; // <-- Cseréld ki a saját Google Script URL-dre!
+
+    fetch(googleSheetUrl, {
+        method: "POST",
+        mode: "no-cors", // Fontos a CORS hiba elkerülése végett böngészőből
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            order_id: "#" + orderId,
+            email: userEmail,
+            teacher_name: teacherName + " (" + subject + ")",
+            lesson_count: lessonCount + " óra",
+            total_price: totalPrice
+        })
+    }).then(() => {
+        console.log("Rendelés elmentve a Google Táblázatba!");
+    }).catch(err => {
+        console.error("Hiba a mentés során:", err);
+    });
+
+    // Visszajelzés a chatben
+    var successMsg = document.createElement('div');
+    successMsg.className = 'message system-msg payment-success-msg';
+    successMsg.innerHTML = `
+        ✅ <strong>Sikeres fizetés! (${methodNames[selectedMethod]})</strong><br>
+        Sikeresen megvásároltál <strong>${lessonCount} tanórát</strong> (${totalPrice}) <strong>${teacherName}</strong> oktatónál.<br>
+        <span style="font-size: 12px; color: #38bdf8; display: block; margin-top: 4px;">📧 A számlát elküldtük erre a címre: <strong>${userEmail}</strong></span>
+    `;
+    messagesDiv.appendChild(successMsg);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
 
         function sendMessage(event) {
             event.preventDefault();

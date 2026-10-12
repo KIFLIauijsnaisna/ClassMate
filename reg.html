@@ -275,7 +275,7 @@ function register() {
 
     // Mentés local storage-ba
     localStorage.setItem(username, JSON.stringify({email, password}));
-
+    localStorage.setItem('currentUserEmail', email);
     errorEl.textContent = "";
     
     // Siker animációk és átirányítás (marad a régi)
