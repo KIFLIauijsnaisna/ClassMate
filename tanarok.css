@@ -652,6 +652,11 @@ span {
     animation: slideUpModal 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+.chat-content.payment-content {
+    max-height: 90vh;       /* Ne legyen magasabb, mint a képernyő 90%-a */
+    overflow-y: auto;       /* Automatikusan megjeleníti a görgetősávot, ha kell */
+}
+
 @keyframes slideUpModal {
     from {
         opacity: 0;
@@ -850,6 +855,7 @@ span {
     height: auto;
     max-height: 100vh;
 }
+
 
 .payment-body {
     padding: 20px;
