@@ -848,7 +848,7 @@ span {
 /* --- Fizetési Modal Belső --- */
 .payment-content {
     height: auto;
-    max-height: 90vh;
+    max-height: 100vh;
 }
 
 .payment-body {
